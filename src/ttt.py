@@ -84,7 +84,14 @@ class Player:
     def get_move(self):
         return ast.literal_eval(input('Select move position (1-9): '))
 
+class RandomPlayer:
+
+    def __init__(self, token):
+        self.token = token
+
+    def get_move(self):
+        return random.randint(1, 9)
 
 g = Game()
-g.play_game(player1=Player('X'), player2=Player('O'))
+g.play_game(player1=Player('X'), player2=RandomPlayer('O'))
 
