@@ -20,8 +20,8 @@ class PartialHangman:
     def print_board(self):
 
         output = []
-        for l in self.letters_guessed:
-            if l in self.word:
+        for l in self.word:
+            if l in self.letters_guessed:
                 output.append(l)
         print('Letters in word:', output)
         print('Letters guessed:', self.letters_guessed)
