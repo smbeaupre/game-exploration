@@ -1,5 +1,5 @@
 import random
-from src.games import TicTakToe
+from src.games import TicTakToe, PartialHangman
 from src.agents import HumanPlayer, RandomPlayer
 
 

@@ -8,4 +8,5 @@ class RandomPlayer:
 
     def get_move(self, game):
 
-        return random.choice(game.get_valid_moves())
+        move = random.choice(game.get_valid_moves())
+        return move
