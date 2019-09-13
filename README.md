@@ -1,4 +1,4 @@
-# tic-tak-toe
+# General Game Playing Library
 
 
-A project to create tic tak toe with an AI
+A project to explore creating various intelligent game playing agents
