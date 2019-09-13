@@ -1,7 +1,5 @@
 import random
 import numpy as np
-import ast
-
 from src.players import HumanPlayer, RandomPlayer
 
 
@@ -11,6 +9,9 @@ def numpad_to_coord(number):
     x = (number - 1) % 3
     return x, y
 
+def coord_to_numpad(y, x):
+
+    return 7 - (3 * y) + x
 
 class Game:
 
@@ -32,7 +33,18 @@ class Game:
             print('|'+'|'.join(row)+'|')
             print('-------')
 
+    def get_valid_moves(self):
+        coords = np.where(self.board == ' ')
+        moves = []
+        for i in range(len(coords[0])):
+            moves.append((coords[0][i], coords[1][i]))
+        for i in range(len(moves)):
+            moves[i] = coord_to_numpad(moves[i][0], moves[i][1])
+        return np.sort(moves)
+
     def is_move_valid(self, number):
+        if number not in range(1, 10):
+            return False
         x, y = numpad_to_coord(number)
         return self.board[y, x] == ' '
 
@@ -63,7 +75,7 @@ class Game:
             self.print_board()
             valid_move = False
             while not valid_move:
-                desired_move = current_player.get_move()
+                desired_move = current_player.get_move(game=self)
                 valid_move = self.is_move_valid(desired_move)
                 if not valid_move:
                     print('Invalid move, try again')
