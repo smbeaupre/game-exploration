@@ -8,4 +8,4 @@ class HumanPlayer:
 
     def get_move(self, game):
 
-        return ast.literal_eval(input('Select move position (1-9): '))
+        return ast.literal_eval(input('Select move position: '))
