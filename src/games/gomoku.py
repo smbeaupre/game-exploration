@@ -62,11 +62,31 @@ class Gomoku:
 
     def get_likely_moves(self):
 
-        pieces_o = np.where(self.board == 'O')
+        pieces = np.where(self.board != ' ')
         tups = []
-        for i in range(len(pieces_o[0])):
-            tups.append((pieces_o[0][i], pieces_o[1][i]))
-        pieces_x = np.where(self.board == 'X')
+        for i in range(len(pieces[0])):
+            tups.append((pieces[0][i], pieces[1][i]))
+
+        locs = []
+        recs = []
+        for t in tups:
+
+            for j in range(2):
+                for k in range(2):
+                    recs.append(limit_coord_to_board((t[0] + j, t[1] + k)))
+                    recs.append(limit_coord_to_board((t[0] - j, t[1] + k)))
+                    recs.append(limit_coord_to_board((t[0] + j, t[1] - k)))
+                    recs.append(limit_coord_to_board((t[0] - j, t[1] - k)))
+        recs = list(set(recs))
+        for r in recs:
+            if self.is_move_valid(r):
+                locs.append(r)
+        return list(set(locs))
+
+    def get_quality_moves(self, token):
+
+        tups = []
+        pieces_x = np.where(self.board == token)
         for i in range(len(pieces_x[0])):
             tups.append((pieces_x[0][i], pieces_x[1][i]))
 
@@ -85,6 +105,8 @@ class Gomoku:
             if self.is_move_valid(r):
                 locs.append(r)
         return list(set(locs))
+
+
 
 
 def limit_coord_to_board(coord):
