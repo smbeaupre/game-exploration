@@ -39,7 +39,7 @@ class MinimaxPlayer:
                 return random.choice(game.get_likely_moves())
         return best_move
 
-    def _minimax(self, current_game, current_depth, max_depth, is_max_turn, max_time, evaluator=boolean_eval, alpha=float('-inf'), beta=float('inf')):
+    def _minimax(self, current_game, current_depth, max_depth, max_time, is_max_turn=True, evaluator=boolean_eval, alpha=float('-inf'), beta=float('inf')):
 
         if time.time() >= max_time:
             return float('-inf'), 'TIMEOUT'
