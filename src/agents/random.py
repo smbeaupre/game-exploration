@@ -5,6 +5,7 @@ class RandomPlayer:
 
     def __init__(self, token, move_selection='Likely'):
         self.token = token
+        self.move_selection = move_selection
 
     def get_move(self, game):
 

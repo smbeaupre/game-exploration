@@ -29,7 +29,7 @@ def play_game(game, player1, player2):
     game.print_board()
 
 game = Gomoku()
-play_game(game=game, player1=HumanPlayer('X'), player2=MinimaxPlayer('O', max_depth=6, move_selection='Likely'))
+play_game(game=game, player1=MinimaxPlayer('X', max_depth=10, search_time=30,  move_selection='Likely'), player2=RandomPlayer(token='O', move_selection='Likely'))
 
 
 
