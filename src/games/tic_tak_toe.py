@@ -37,6 +37,8 @@ class TicTakToe:
         return self.board[y, x] == ' '
 
     def check_winner(self):
+        if len(self.get_valid_moves()) == 0:
+            return 'TIE'
 
         for row in self.board:
             if np.all(row == row[0]) and row[0] != ' ':
