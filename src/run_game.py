@@ -1,5 +1,5 @@
 import random
-from src.games import TicTakToe, PartialHangman
+from src.games import TicTakToe, PartialHangman, Gomoku
 from src.agents import HumanPlayer, RandomPlayer, MinimaxPlayer
 
 
@@ -28,8 +28,8 @@ def play_game(game, player1, player2):
     print('WINNER: ' + winner)
     game.print_board()
 
-
-game = TicTakToe()
+game = Gomoku()
 play_game(game=game, player1=HumanPlayer('X'), player2=MinimaxPlayer('O'))
+
 
 
