@@ -4,9 +4,7 @@ import numpy as np
 class TicTakToe:
 
     def __init__(self):
-        self.board = np.array([[' ', ' ', ' '],
-                               [' ', ' ', ' '],
-                               [' ', ' ', ' ']])
+        self.board = np.full((3, 3), ' ')
 
     def perform_move(self, number, val):
         # Convert number into x, y coordinates
