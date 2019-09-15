@@ -5,9 +5,10 @@ from src.agents.evaluators import boolean_eval
 
 class MinimaxPlayer:
 
-    def __init__(self, token, max_depth=10):
+    def __init__(self, token, max_depth=5, move_selection='Valid'):
         self.token = token
         self.max_depth = max_depth
+        self.move_selection = move_selection
         self.number_searches = 0
         if self.token == 'O':
             self.min_token = 'X'
@@ -32,7 +33,10 @@ class MinimaxPlayer:
         if current_game.check_winner() != ' ' or current_depth == self.max_depth:
             return evaluator(current_game, self.token), ""
 
-        possible_moves = current_game.get_valid_moves()
+        if self.move_selection == 'Likely':
+            possible_moves = current_game.get_likely_moves()
+        else:
+            possible_moves = current_game.get_valid_moves()
         random.shuffle(possible_moves)
         best_move = ""
         best_value = float('-inf') if is_max_turn else float('inf')
