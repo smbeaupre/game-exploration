@@ -27,7 +27,7 @@ class MinimaxPlayer:
         for d in range(1, self.max_depth+1):
             print('Searching depth:', d)
             score, move = self._minimax(current_game=game, current_depth=0, max_depth=d, is_max_turn=True, max_time=max_time)
-            if score > best_score:
+            if score >= best_score:
                 best_score = score
                 best_move = move
 
