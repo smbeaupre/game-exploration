@@ -22,15 +22,20 @@ class MinimaxPlayer:
         max_time = time.time() + self.search_time
 
         best_move = ""
+        best_score = float('-inf')
 
-        for d in range(self.max_depth+1):
+        for d in range(1, self.max_depth+1):
             print('Searching depth:', d)
             score, move = self._minimax(current_game=game, current_depth=0, max_depth=d, is_max_turn=True, max_time=max_time)
+            if score > best_score:
+                best_score = score
+                best_move = move
+
             print(self.number_searches, move, score)
             self.number_searches = 0
 
-            if move != 'TIMEOUT':
-                best_move = move
+            if move == 'TIMEOUT':
+                break
 
         if best_move == "":
             if len(game.get_likely_moves()) == 0:
@@ -54,6 +59,8 @@ class MinimaxPlayer:
 
         if self.move_selection == 'Likely':
             possible_moves = current_game.get_likely_moves()
+        elif self.move_selection == 'Quality':
+            possible_moves = current_game.get_quality_moves(current_token)
         else:
             possible_moves = current_game.get_valid_moves()
         random.shuffle(possible_moves)
